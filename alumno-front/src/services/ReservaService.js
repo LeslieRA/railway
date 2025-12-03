@@ -1,18 +1,13 @@
-import axios from 'axios';
+import { reservasApi } from "../config/apiConfig";
 
-const API_BASE_URL = "http://localhost:7076/api/reserva"; 
+const RESERVA_ENDPOINT = "/api/reserva";
 
-export const listarReservas = () => axios.get(API_BASE_URL);
-export const crearReserva = (reserva) => axios.post(API_BASE_URL, reserva);
+export const listarReservas = () => reservasApi.get(RESERVA_ENDPOINT);
 
-// --- 👇 AÑADE ESTAS DOS FUNCIONES SI NO LAS TIENES 👇 ---
-// Obtiene una reserva específica por su ID
-export const getReservaById = (idReserva) => axios.get(`${API_BASE_URL}/${idReserva}`);
+export const crearReserva = (reserva) => reservasApi.post(RESERVA_ENDPOINT, reserva);
 
-// Actualiza una reserva existente
-export const updateReserva = (idReserva, reserva) => axios.put(`${API_BASE_URL}/${idReserva}`, reserva);
+export const getReservaById = (idReserva) => reservasApi.get(`${RESERVA_ENDPOINT}/${idReserva}`);
 
-// --- 👇 AÑADE ESTA FUNCIÓN FALTANTE 👇 ---
-export const deleteReserva = (idReserva) => {
-    return axios.delete(`${API_BASE_URL}/${idReserva}`);
-};
+export const updateReserva = (idReserva, reserva) => reservasApi.put(`${RESERVA_ENDPOINT}/${idReserva}`, reserva);
+
+export const deleteReserva = (idReserva) => reservasApi.delete(`${RESERVA_ENDPOINT}/${idReserva}`);

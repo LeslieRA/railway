@@ -1,40 +1,40 @@
-import axios from "axios";
+import { restauranteApi } from "../config/apiConfig";
 
-const REST_API_BASE_URL = "http://localhost:7072/api/cliente";
+// La base URL ya está definida en restauranteApi, aquí solo ponemos el endpoint
+const BASE_ENDPOINT = "/api/cliente";
 
-// 1. LISTAR (Para la tabla y dropdowns)
+// 1. LISTAR
 export const listClientes = (nombre) => {
     const params = {};
     if (nombre) {
         params.nombre = nombre;
     }
-    return axios.get(REST_API_BASE_URL, { params });
+    return restauranteApi.get(BASE_ENDPOINT, { params });
 };
 
-// 2. CREAR (Para registrarse)
+// 2. CREAR
 export const crearCliente = (cliente) => {
-    return axios.post(REST_API_BASE_URL, cliente);
+    return restauranteApi.post(BASE_ENDPOINT, cliente);
 };
 
-// 3. OBTENER POR ID (Para editar)
-// 👇 AQUÍ ESTABA EL ERROR: Cambiamos 'getCliente' por 'getClienteById'
+// 3. OBTENER POR ID
 export const getClienteById = (id_cliente) => {
-    return axios.get(`${REST_API_BASE_URL}/${id_cliente}`);
+    return restauranteApi.get(`${BASE_ENDPOINT}/${id_cliente}`);
 };
 
 // 4. ACTUALIZAR
 export const updateCliente = (id_cliente, cliente) => {
-    return axios.put(`${REST_API_BASE_URL}/${id_cliente}`, cliente);
+    return restauranteApi.put(`${BASE_ENDPOINT}/${id_cliente}`, cliente);
 };
 
 // 5. ELIMINAR
 export const deleteCliente = (id_cliente) => {
-    return axios.delete(`${REST_API_BASE_URL}/${id_cliente}`);
+    return restauranteApi.delete(`${BASE_ENDPOINT}/${id_cliente}`);
 };
 
-// 6. BUSCAR POR CORREO (Para identificar al cliente logueado)
+// 6. BUSCAR POR CORREO
 export const getClienteByCorreo = (correo) => {
-    return axios.get(`${REST_API_BASE_URL}/buscar-por-correo`, {
+    return restauranteApi.get(`${BASE_ENDPOINT}/buscar-por-correo`, {
         params: { correo }
     });
 };

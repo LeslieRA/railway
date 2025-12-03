@@ -4,7 +4,7 @@ import './index.css'
 import App from './App.jsx'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './config/axiosConfig.js';
+
 import { AuthProvider } from './context/AuthContext'; // Importa el Provider
 
 

@@ -1,26 +1,15 @@
-import axios from 'axios';
+import { restauranteApi } from "../config/apiConfig";
 
-// La URL de tu backend de autenticación (puerto 7076)
-const AUTH_API_URL = "http://localhost:7076/api/auth";
+const AUTH_ENDPOINT = "/api/auth";
 
-/**
- * Llama al endpoint /login.
- * loginRequest debe ser: { username, password }
- */
 export const loginUsuario = (loginRequest) => {
-    return axios.post(AUTH_API_URL + "/login", loginRequest);
+    return restauranteApi.post(`${AUTH_ENDPOINT}/login`, loginRequest);
 };
 
-/**
- * Llama al endpoint /register.
- * registerRequest debe ser: { nombre, username, password, puesto }
- */
 export const registerEmpleado = (registerRequest) => {
-    return axios.post(AUTH_API_URL + "/register", registerRequest);
+    return restauranteApi.post(`${AUTH_ENDPOINT}/register`, registerRequest);
 };
 
-// --- 👇 ESTA ES LA QUE NECESITAS PARA EL CLIENTE 👇 ---
 export const loginCliente = (loginRequest) => {
-    // El backend espera { username: "correo", password: "..." }
-    return axios.post(AUTH_API_URL + "/login-cliente", loginRequest);
+    return restauranteApi.post(`${AUTH_ENDPOINT}/login-cliente`, loginRequest);
 };
