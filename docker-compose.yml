@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  # --- Servicio de Base de Datos ---
+  mysqldb:
+    image: mysql:8.0
+    container_name: mysql_container
+    restart: always
+    environment:
+      MYSQL_DATABASE: restaurante1
+      MYSQL_ROOT_PASSWORD: AxelDanielAdame
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  # --- Microservicio Restaurante1 ---
+  restaurante1:
+    build: ./restaurante1  # Ruta donde está el Dockerfile que creamos en el Paso 2
+    container_name: restaurante1_service
+    restart: on-failure
+    ports:
+      - "7072:7072"
+    environment:
+      # Sobreescribimos la configuración de application.properties
+      # IMPORTANTE: Aquí usamos 'mysqldb' (nombre del servicio arriba) en vez de 'localhost'
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/restaurante1?allowPublicKeyRetrieval=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: AxelDanielAdame
+    depends_on:
+      - mysqldb # Espera a que arranque la BD
+
+volumes:
+  mysql_data:
