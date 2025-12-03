@@ -1,0 +1,268 @@
+/* =========================================
+   1. ESTILOS BASE DEL HEADER
+   ========================================= */
+.main-header {
+  background-color: #2f4858; /* Azul oscuro elegante */
+  height: 100px; /* Altura fija para mantener el orden */
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Separa Logo de la Navegación */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  font-family: 'Arial', sans-serif;
+}
+
+/* =========================================
+   2. LOGOTIPO
+   ========================================= */
+.logo {
+  flex-shrink: 0;
+  margin-right: 2rem;
+}
+
+.logo a {
+  color: #c29c5e; /* Dorado/Café claro */
+  text-decoration: none;
+  font-size: 1.6rem;
+  font-weight: bold;
+  font-family: 'Georgia', serif;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+/* =========================================
+   3. NAVEGACIÓN PRINCIPAL
+   ========================================= */
+nav {
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-end; /* Alinea todo el menú a la derecha */
+}
+
+.main-header nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  gap: 0.5rem; /* Espacio entre los botones del menú */
+  align-items: center;
+}
+
+/* Enlaces del menú (Nivel superior) */
+.main-header nav > ul > li > a {
+  color: #f0f0f0;
+  text-decoration: none;
+  font-size: 0.95rem;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.main-header nav > ul > li > a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+/* =========================================
+   4. SISTEMA DE DROPDOWNS (Desplegables)
+   ========================================= */
+.dropdown {
+  position: relative;
+}
+
+/* Contenedor genérico para los paneles (Mega Menu y Normal) */
+.dropdown-panel,
+.mega-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%); /* Centrado perfecto */
+  background-color: #ffffff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 1.5rem;
+  z-index: 1001;
+  border-top: 4px solid #c29c5e; /* Línea de color superior */
+  min-width: 240px;
+  margin-top: 10px; /* Separación visual del header */
+}
+
+/* --- EL PUENTE INVISIBLE (Solución al problema de que se cierra) --- */
+/* Crea un área invisible entre el botón y el menú para no perder el hover */
+.dropdown-panel::after,
+.mega-menu::after,
+.user-info .dropdown-menu::after {
+  content: '';
+  position: absolute;
+  top: -15px; 
+  left: 0;
+  width: 100%;
+  height: 20px; 
+  background: transparent;
+}
+
+/* Triángulo decorativo (flechita) */
+.dropdown-panel::before,
+.mega-menu::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 0 8px 8px 8px;
+  border-style: solid;
+  border-color: transparent transparent #c29c5e transparent;
+}
+
+/* Mostrar al pasar el mouse */
+.dropdown:hover .dropdown-panel,
+.dropdown:hover .mega-menu {
+  display: flex; /* Usamos flex para los mega menús */
+  flex-direction: row;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+/* Estilos internos de las listas del menú */
+.mega-menu {
+  width: max-content;
+  gap: 2rem;
+}
+
+.mega-menu-column h3 {
+  font-size: 0.9rem;
+  color: #888;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.mega-menu-column ul,
+.dropdown-panel ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.mega-menu-column a,
+.dropdown-panel a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0.6rem 0.8rem;
+  color: #2f4858;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background 0.2s;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.mega-menu-column a:hover,
+.dropdown-panel a:hover {
+  background-color: #f4f1ea; /* Fondo beige suave */
+  color: #c29c5e;
+  transform: translateX(5px);
+}
+
+/* =========================================
+   5. USUARIO Y CERRAR SESIÓN (Ajustado)
+   ========================================= */
+.user-info {
+  margin-left: 1rem;
+  border-left: 1px solid rgba(255,255,255,0.2); /* Separador visual */
+  padding-left: 1rem;
+}
+
+/* Estilo del botón del nombre de usuario */
+.user-info > a {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 0.5rem 1rem !important;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.2);
+  font-weight: bold;
+}
+
+.user-info > a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Menú desplegable específico del usuario */
+.user-info .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0; /* Alineado a la derecha del padre */
+  left: auto; /* Anula el left: 50% */
+  transform: none; /* Anula el transform */
+  background-color: white;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  padding: 0.5rem;
+  z-index: 1001;
+  min-width: 200px;
+  margin-top: 12px;
+  border-top: 4px solid #d9534f; /* Rojo para indicar sesión */
+}
+
+/* Flechita específica para usuario (alineada a la derecha) */
+.user-info .dropdown-menu::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  right: 20px; /* Posición manual a la derecha */
+  left: auto;
+  transform: none;
+  border-width: 0 8px 8px 8px;
+  border-style: solid;
+  border-color: transparent transparent #d9534f transparent;
+}
+
+.user-info:hover .dropdown-menu {
+  display: block;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+/* Botón de Cerrar Sesión (Bonito y funcional) */
+.btn-logout {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 0.8rem 1rem;
+  color: #d9534f; /* Rojo */
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  transition: background 0.2s;
+}
+
+.btn-logout:hover {
+  background-color: #fff0f0; /* Rojo muy claro al pasar el mouse */
+}
+
+/* =========================================
+   6. ANIMACIONES
+   ========================================= */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

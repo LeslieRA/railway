@@ -1,0 +1,390 @@
+/* --- Paleta de Colores y Estilos Base --- */
+:root {
+  --color-fondo: #f5f5dc; /* Un beige muy claro como fondo de página */
+  --color-primario: #c29c5e;  /* Café claro, para acentos y botones */
+  --color-secundario: #899458; /* Verde olivo, para éxito o confirmación */
+  --color-terciario: #578661; /* Verde más oscuro */
+  --color-texto: #2f4858;    /* Azul oscuro, para texto principal */
+  --color-header: #2f4858;   /* Azul oscuro, para el encabezado */
+  --color-error: #a94442;    /* Un rojo sutil para alertas */
+  --fuente-titulos: 'Georgia', serif;
+  --fuente-cuerpo: 'Arial', sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--fuente-cuerpo);
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+}
+
+/* --- Contenedor Principal --- */
+.container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-family: var(--fuente-titulos);
+  color: var(--color-header);
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  border-bottom: 3px solid var(--color-primario);
+  display: inline-block;
+  padding-bottom: 0.5rem;
+}
+
+/* --- Estilos para la Tabla --- */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+}
+
+.table th, .table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.table thead {
+  background-color: var(--color-header);
+  color: var(--color-primario);
+  font-family: var(--fuente-titulos);
+  font-size: 1.1rem;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.table tbody tr:hover {
+  background-color: #e8e4d9;
+}
+
+/* --- Estilos para Formularios --- */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: var(--color-texto);
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  box-sizing: border-box; 
+}
+
+/* --- Estilos para Botones y Acciones --- */
+.actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.btn {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  color: white;
+}
+
+.btn-edit {
+  background-color: var(--color-primario);
+}
+.btn-edit:hover {
+  background-color: #a78247;
+  transform: translateY(-2px);
+}
+
+.btn-delete {
+  background-color: #c0615f;
+}
+.btn-delete:hover {
+  background-color: #a94442;
+  transform: translateY(-2px);
+}
+
+.btn-save {
+  background-color: var(--color-secundario);
+}
+.btn-save:hover {
+  background-color: #6e7645;
+  transform: translateY(-2px);
+}
+
+/* --- Estilos para el layout del formulario --- */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-check {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-top: 1rem;
+}
+
+.form-check-input {
+  width: 1.25em;
+  height: 1.25em;
+}
+
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- Estilos para la tabla de productos suspendidos --- */
+.product-suspended {
+  opacity: 0.5;
+  background-color: #f8f9fa; 
+  transition: opacity 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+.product-suspended:hover {
+  opacity: 0.7;
+}
+.btn-activate {
+  background-color: var(--color-terciario);
+}
+.btn-activate:hover {
+  filter: brightness(110%);
+}
+
+/* --- Estilos para la tabla de Mesas --- */
+.mesa-ocupada {
+  background-color: #fbeae5; 
+  font-weight: 500;
+  transition: background-color 0.3s ease-in-out;
+}
+.btn-occupy {
+  background-color: var(--color-terciario); 
+}
+.btn-vacate {
+  background-color: #d9534f; 
+}
+
+/* --- Estilos para el Menú de Productos --- */
+.menu-filters {
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 1.5rem;
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.menu-filters .form-group {
+  flex: 1; 
+  min-width: 200px;
+  margin-bottom: 0;
+}
+.menu-filters .form-group label {
+  font-weight: normal;
+  font-size: 0.9rem;
+}
+
+.type-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+  width: 100%;
+}
+.type-buttons button {
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #555;
+}
+.type-buttons button:hover {
+  background-color: #ddd;
+}
+.type-buttons button.active {
+  background-color: var(--color-header); 
+  color: white;
+}
+
+/* --- Cuadrícula de Productos --- */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.product-card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  overflow: hidden; 
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-align: left; 
+  display: flex; 
+  flex-direction: column; 
+}
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.product-card img {
+  width: 100%;
+  height: 200px; 
+  object-fit: cover; 
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.product-card-body {
+  padding: 1rem;
+  flex-grow: 1; 
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card-body h4 {
+  font-family: var(--fuente-titulos);
+  font-size: 1.25rem; 
+  color: var(--color-texto);
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+.product-card-body .price {
+  font-size: 1.15rem;
+  font-weight: bold;
+  color: var(--color-terciario); 
+  margin-bottom: 0.25rem; 
+}
+
+.product-card-body .product-type {
+  font-size: 0.9rem;
+  color: #777;
+  margin-bottom: 0.75rem; 
+}
+
+.product-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto; /* Empuja el footer hacia abajo */
+}
+
+/* Estilo para el indicador de estado (Activo/Inactivo) */
+.product-status {
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  color: white;
+  display: inline-block; 
+}
+.product-status.active-status {
+  background-color: #28a745; /* Verde para activo */
+}
+.product-status.inactive-status {
+  background-color: #dc3545; /* Rojo para inactivo */
+}
+
+/* Estilo para el botón de "Agregar" */
+.btn-add-to-cart {
+  background-color: var(--color-header); 
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+.btn-add-to-cart:hover {
+  background-color: #263b48; 
+}
+
+/* --- Estilos para los botones de Rango de Precio --- */
+.price-range-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  width: 100%;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
+.price-range-buttons button {
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #555;
+}
+.price-range-buttons button:hover {
+  background-color: #ddd;
+}
+.price-range-buttons button.active {
+  background-color: var(--color-terciario); /* Color verde */
+  color: white;
+}
+
+/* --- Estilos para los botones de Rango de Precio --- */
+.price-range-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  width: 100%;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
+.price-range-buttons button {
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #555;
+}
+.price-range-buttons button:hover {
+  background-color: #ddd;
+}
+/* Esta es la clase que hace que se vea "pulsado" */
+.price-range-buttons button.active {
+  background-color: var(--color-terciario); /* Color verde */
+  color: white;
+}
